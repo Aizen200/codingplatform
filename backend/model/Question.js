@@ -1,4 +1,16 @@
 const mongoose=require("mongoose")
+const testcaseschema=mongoose.Schema({
+    input:{
+        type:mongoose.Schema.Types.Mixed,
+        required:true
+    }
+    ,
+    expectedOutput:{
+        type:mongoose.Schema.Types.Mixed,
+        required:true
+    },
+    _id:false
+})
 const questionschema=mongoose.Schema({
     title:{
         type:String,
@@ -17,9 +29,14 @@ const questionschema=mongoose.Schema({
         type:String,
         required:true
     },
+    testcase:{type:[testcaseschema],
+        required:true
+    }
+    ,
     constraints:{
         type:[String],
         required:true
     }
 })
-module.exports=questionschema
+const Question=mongoose.model("Question",questionschema)
+module.exports=Question
