@@ -1,4 +1,4 @@
-export default function App() {
+export default function Login() {
     return (
       <div className="min-h-screen relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
   
@@ -7,16 +7,7 @@ export default function App() {
           <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl"></div>
         </div>
   
-        <div className="
-          relative z-10
-          w-full max-w-md
-          bg-slate-900/60
-          backdrop-blur-xl
-          border border-slate-700/50
-          rounded-3xl
-          shadow-2xl
-          p-8
-          space-y-6
+        <div className=" relative z-10  w-full max-w-md bg-slate-900/60  backdrop-blur-xl  border border-slate-700/50  rounded-3xl  shadow-2xl   p-8  space-y-6
         ">
   
           <h1 className="text-center text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -27,17 +18,7 @@ export default function App() {
             <input
               type="email"
               placeholder="you@example.com"
-              className="
-                w-full
-                bg-slate-800/60
-                border border-slate-700
-                rounded-xl
-                px-4 py-3
-                text-white
-                placeholder-slate-500
-                focus:outline-none
-                focus:border-purple-500
-                transition
+              className="  w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition
               "
             />
           </div>
@@ -47,31 +28,13 @@ export default function App() {
             <input
               type="password"
               placeholder="••••••••"
-              className="
-                w-full
-                bg-slate-800/60
-                border border-slate-700
-                rounded-xl
-                px-4 py-3
-                text-white
-                placeholder-slate-500
-                focus:outline-none
-                focus:border-purple-500
-                transition
+              className=" w-full bg-slate-800/60 border border-slate-700 rounded-xl  px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition
               "
             />
           </div>
 
           <button
-            className="
-              w-full
-              py-3
-              rounded-xl
-              font-semibold
-              text-white
-              bg-gradient-to-r from-purple-500 to-pink-500
-              hover:from-purple-600 hover:to-pink-600
-              transition-all
+            className=" w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500  hover:from-purple-600 hover:to-pink-600 transition-all
             "
           >
             Login →
