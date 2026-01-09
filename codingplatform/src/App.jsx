@@ -1,9 +1,9 @@
 import React from 'react'
-import Signup from './pages/Signup'
+import Question from './pages/Question'
 const App = () => {
   return (
     <div>
-      <Signup/>
+      <Question/>
     </div>
   )
 }
