@@ -1,13 +1,16 @@
+import{Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 export default function Login() {
+  const navigate=useNavigate()
     return (
-      <div className="min-h-screen relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
+      <div className="min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
   
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-32 -left-32 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl"></div>
         </div>
   
-        <div className=" relative z-10  w-full max-w-md bg-slate-900/60  backdrop-blur-xl  border border-slate-700/50  rounded-3xl  shadow-2xl   p-8  space-y-6
+        <div className="relative z-10  w-full max-w-md bg-slate-900/60  backdrop-blur-xl  border border-slate-700/50  rounded-3xl  shadow-2xl   p-8  space-y-6
         ">
   
           <h1 className="text-center text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -34,11 +37,12 @@ export default function Login() {
           </div>
 
           <button
-            className=" w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500  hover:from-purple-600 hover:to-pink-600 transition-all
+            onClick={()=>navigate("/question")} className=" w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500  hover:from-purple-600 hover:to-pink-600 transition-all
             "
           >
             Login →
-          </button>
+          </button >
+          <p className="text-center text-white">if new user   <Link to="/Signup"> Signup</Link></p>
   
         </div>
       </div>

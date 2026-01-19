@@ -1,14 +1,24 @@
 import React from 'react'
 import { Filter, User } from 'lucide-react'
+import { useNavigate } from 'react-router-dom';
+import api from '../axios/axios';
+import { useEffect,useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const Topics = () => {
+  const {topic}=useParams()
+  const navigate = useNavigate();
+  const [topicquestion,setTopicquestion]=useState([])
+  useEffect(()=>{
+    api.get(`/questions/${topic}`).then((response)=>setTopicquestion(response.data)).catch((err)=>err)
+  },[topic])
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-200 px-4 sm:px-6 py-4">
 
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
 
-        <button className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+        <button  onClick={()=>{navigate("/question")}}className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
           Algorythm
         </button>
 
@@ -47,21 +57,15 @@ const Topics = () => {
         <div className="flex-1 bg-slate-900/60 border border-slate-800 rounded-2xl overflow-x-auto">
           <table className="min-w-full">
             <tbody>
-              <tr className="border-b border-slate-800 hover:bg-slate-800/40 transition">
-                <td className="px-4 sm:px-6 py-4">
-                  Question of that given topic
+              {
+                topicquestion.map((x)=>
+                <tr className="border-b border-slate-800 hover:bg-slate-800/40 transition">
+                  <td className="px-4 sm:px-6 py-4">
+                  <div>{x.title}</div> <div>{x.difficulty}</div>
                 </td>
-              </tr>
-              <tr className="border-b border-slate-800 hover:bg-slate-800/40 transition">
-                <td className="px-4 sm:px-6 py-4">
-                  Another question
-                </td>
-              </tr>
-              <tr className="hover:bg-slate-800/40 transition">
-                <td className="px-4 sm:px-6 py-4">
-                  Another question
-                </td>
-              </tr>
+                </tr>)
+              }
+        
             </tbody>
           </table>
         </div>

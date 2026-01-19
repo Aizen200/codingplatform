@@ -1,6 +1,7 @@
 import React from 'react'
-
+import{Link,useNavigate} from "react-router-dom"
 const Signup = () => {
+  const navigate=useNavigate()
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
       
@@ -45,10 +46,10 @@ const Signup = () => {
           </div>
 
 
-          <button className="mt-4 w-full py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 transition">
+          <button  onClick={()=>navigate("/question")}className="mt-4 w-full py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 transition">
             Sign Up
           </button>
-
+          <p className="text-center text-white">Already a user  <Link to="/Login"> login</Link></p>
         </div>
 
       </div>

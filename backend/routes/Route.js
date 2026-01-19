@@ -12,7 +12,7 @@ router.get("/",async(req,res)=>{
     const allquestions= await Question.find({})
     return res.status(200).json(allquestions) 
 })
-router.get("/:topic/",async(req,res)=>{
+router.get("/:topic",async(req,res)=>{
     const {topic}=req.params
     const {difficulty}=req.query
     if (difficulty){

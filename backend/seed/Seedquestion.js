@@ -2,7 +2,7 @@ const Question=require("../model/Question")
 async function seed(){
     await Question.insertMany([{
         title:"Maximum Element in Array",
-        topic:"arrays",
+        topic:"Arrays",
         difficulty: "easy",
         description:"Given an integer array nums, return the maximum value present in the array.",
         constraints: [
@@ -17,7 +17,7 @@ async function seed(){
     },
     {
         title: "Sum of Array Elements",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "easy",
         description: "Return the sum of all elements in the given integer array.",
         constraints: [
@@ -31,7 +31,7 @@ async function seed(){
       },
       {
         title: "Count Even Numbers",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "easy",
         description: "Count the number of even integers in the array.",
         constraints: [
@@ -44,7 +44,7 @@ async function seed(){
       },
       {
         title: "Find Second Largest Element",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "easy",
         description: "Return the second largest element in the array. All elements are distinct.",
         constraints: [
@@ -58,7 +58,7 @@ async function seed(){
       },
       {
         title: "Check If Array Is Sorted",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "easy",
         description: "Return true if the array is sorted in non-decreasing order, otherwise return false.",
         constraints: [
@@ -72,7 +72,7 @@ async function seed(){
       ,
       {
         title: "Rotate Array by K",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "medium",
         description: "Rotate the array to the right by k positions.",
         constraints: [
@@ -86,7 +86,7 @@ async function seed(){
       },
       {
         title: "Remove Duplicates from Sorted Array",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "medium",
         description: "Remove duplicates from a sorted array and return the count of unique elements.",
         constraints: [
@@ -100,7 +100,7 @@ async function seed(){
       },
       {
         title: "Majority Element",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "medium",
         description: "Return the element that appears more than ⌊n/2⌋ times.",
         constraints: [
@@ -114,7 +114,7 @@ async function seed(){
       },
       {
         title: "Maximum Product of Two Elements",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "medium",
         description: "Return the maximum product of any two elements in the array.",
         constraints: [
@@ -127,7 +127,7 @@ async function seed(){
       },
       {
         title: "Leaders in an Array",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "medium",
         description: "Return all elements that are greater than all elements to their right.",
         constraints: [
@@ -140,7 +140,7 @@ async function seed(){
       },
       {
         title: "Maximum Subarray Sum",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "hard",
         description: "Find the contiguous subarray with the maximum sum and return its sum.",
         constraints: [
@@ -153,7 +153,7 @@ async function seed(){
       },
       {
         title: "Longest Subarray with Given Sum",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "hard",
         description: "Return the length of the longest subarray whose sum equals k.",
         constraints: [
@@ -166,7 +166,7 @@ async function seed(){
       },
       {
         title: "Merge Intervals",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "hard",
         description: "Merge all overlapping intervals and return the resulting intervals.",
         constraints: [
@@ -179,7 +179,7 @@ async function seed(){
       },
       {
         title: "Product of Array Except Self",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "hard",
         description: "Return an array such that each element is the product of all other elements.",
         constraints: [
@@ -192,7 +192,7 @@ async function seed(){
       },
       {
         title: "Subarray Sum Equals K",
-        topic: "arrays",
+        topic: "Arrays",
         difficulty: "hard",
         description: "Return the total number of subarrays whose sum equals k.",
         constraints: [
@@ -205,7 +205,7 @@ async function seed(){
       },
       {
         title: "Reverse an Array",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "easy",
         description: "Given an integer array nums, reverse the array and return the result.",
         constraints: [
@@ -218,7 +218,7 @@ async function seed(){
       },
       {
         title: "Check Palindrome String",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "easy",
         description: "Given a string s, return true if it is a palindrome, otherwise return false.",
         constraints: [
@@ -231,7 +231,7 @@ async function seed(){
       },
       {
         title: "Move Zeros to End",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "easy",
         description: "Move all zeros in the array to the end while maintaining the order of non-zero elements.",
         constraints: [
@@ -244,7 +244,7 @@ async function seed(){
       },
       {
         title: "Remove Element",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "easy",
         description: "Remove all occurrences of a target value from the array and return the resulting array.",
         constraints: [
@@ -257,7 +257,7 @@ async function seed(){
       },
       {
         title: "Reverse String",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "easy",
         description: "Reverse the given string and return the result.",
         constraints: [
@@ -270,7 +270,7 @@ async function seed(){
       },
       {
         title: "Two Sum (Sorted Array)",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "medium",
         description: "Given a sorted array and a target, return indices of the two numbers that add up to the target.",
         constraints: [
@@ -284,7 +284,7 @@ async function seed(){
       },
       {
         title: "Remove Duplicates from Sorted Array",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "medium",
         description: "Remove duplicates from a sorted array and return the count of unique elements.",
         constraints: [
@@ -298,7 +298,7 @@ async function seed(){
       },
       {
         title: "Merge Two Sorted Arrays",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "medium",
         description: "Merge two sorted arrays into a single sorted array.",
         constraints: [
@@ -311,7 +311,7 @@ async function seed(){
       },
       {
         title: "Container With Most Water",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "medium",
         description: "Given heights of vertical lines, find the maximum amount of water a container can store.",
         constraints: [
@@ -324,7 +324,7 @@ async function seed(){
       },
       {
         title: "Longest Palindromic Substring Length",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "medium",
         description: "Return the length of the longest palindromic substring in the given string.",
         constraints: [
@@ -337,7 +337,7 @@ async function seed(){
       },
       {
         title: "Trapping Rain Water",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "hard",
         description: "Given elevation heights, compute how much water can be trapped after raining.",
         constraints: [
@@ -350,7 +350,7 @@ async function seed(){
       },
       {
         title: "Minimum Window Subarray Sum",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "hard",
         description: "Return the minimum length of a contiguous subarray whose sum is at least target.",
         constraints: [
@@ -364,7 +364,7 @@ async function seed(){
       },
       {
         title: "Pair With Difference K",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "hard",
         description: "Determine if there exists a pair of numbers with an absolute difference equal to k.",
         constraints: [
@@ -378,7 +378,7 @@ async function seed(){
       },
       {
         title: "Count Valid Pairs",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "hard",
         description: "Count the number of pairs whose sum is less than a given target.",
         constraints: [
@@ -392,7 +392,7 @@ async function seed(){
       },
       {
         title: "Longest Substring Without Repeating Characters",
-        topic: "two-pointer",
+        topic: "Two-Pointers",
         difficulty: "hard",
         description: "Return the length of the longest substring without repeating characters.",
         constraints: [
@@ -405,7 +405,7 @@ async function seed(){
       },
       {
         title: "Binary Search",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "easy",
         description: "Given a sorted array and a target value, return the index of the target if it exists, otherwise return -1.",
         constraints: [
@@ -419,7 +419,7 @@ async function seed(){
       },
       {
         title: "First Occurrence of Element",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "easy",
         description: "Return the index of the first occurrence of the target element in a sorted array.",
         constraints: [
@@ -433,7 +433,7 @@ async function seed(){
       },
       {
         title: "Last Occurrence of Element",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "easy",
         description: "Return the index of the last occurrence of the target element in a sorted array.",
         constraints: [
@@ -447,7 +447,7 @@ async function seed(){
       },
       {
         title: "Count Occurrences",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "easy",
         description: "Count the number of times a target element appears in a sorted array.",
         constraints: [
@@ -460,7 +460,7 @@ async function seed(){
       },
       {
         title: "Floor of a Number",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "easy",
         description: "Find the greatest element in the array that is less than or equal to the target.",
         constraints: [
@@ -472,7 +472,7 @@ async function seed(){
       },
       {
         title: "Search in Rotated Sorted Array",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "medium",
         description: "Return the index of the target in a rotated sorted array, or -1 if it does not exist.",
         constraints: [
@@ -485,7 +485,7 @@ async function seed(){
       },
       {
         title: "Find Minimum in Rotated Sorted Array",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "medium",
         description: "Return the minimum element in a rotated sorted array.",
         constraints: [
@@ -499,7 +499,7 @@ async function seed(){
       },
       {
         title: "Peak Element",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "medium",
         description: "Return the index of any peak element. A peak element is greater than its neighbors.",
         constraints: [
@@ -512,7 +512,7 @@ async function seed(){
       },
       {
         title: "Square Root of a Number",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "medium",
         description: "Return the integer part of the square root of a non-negative integer.",
         constraints: [
@@ -525,7 +525,7 @@ async function seed(){
       },
       {
         title: "Kth Missing Positive Number",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "medium",
         description: "Find the kth missing positive number from a sorted array of positive integers.",
         constraints: [
@@ -538,7 +538,7 @@ async function seed(){
       },
       {
         title: "Allocate Minimum Pages",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "hard",
         description: "Allocate books to students such that the maximum number of pages assigned is minimized.",
         constraints: [
@@ -551,7 +551,7 @@ async function seed(){
       },
       {
         title: "Aggressive Cows",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "hard",
         description: "Place cows in stalls such that the minimum distance between any two cows is maximized.",
         constraints: [
@@ -564,7 +564,7 @@ async function seed(){
       },
       {
         title: "Koko Eating Bananas",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "hard",
         description: "Find the minimum eating speed such that Koko can eat all bananas within h hours.",
         constraints: [
@@ -577,7 +577,7 @@ async function seed(){
       },
       {
         title: "Minimum Days to Make Bouquets",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "hard",
         description: "Return the minimum number of days needed to make m bouquets using k adjacent flowers.",
         constraints: [
@@ -590,7 +590,7 @@ async function seed(){
       },
       {
         title: "Ship Packages Within D Days",
-        topic: "binary-search",
+        topic: "Binary-Search",
         difficulty: "hard",
         description: "Find the minimum ship capacity required to ship all packages within D days.",
         constraints: [
@@ -603,7 +603,7 @@ async function seed(){
       },
       {
         title: "Print Numbers from 1 to N",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "easy",
         description: "Print numbers from 1 to N using recursion.",
         constraints: [
@@ -616,7 +616,7 @@ async function seed(){
       },
       {
         title: "Factorial of a Number",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "easy",
         description: "Return the factorial of a given number using recursion.",
         constraints: [
@@ -629,7 +629,7 @@ async function seed(){
       },
       {
         title: "Fibonacci Number",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "easy",
         description: "Return the nth Fibonacci number using recursion.",
         constraints: [
@@ -642,7 +642,7 @@ async function seed(){
       },
       {
         title: "Sum of Digits",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "easy",
         description: "Return the sum of digits of a number using recursion.",
         constraints: [
@@ -655,7 +655,7 @@ async function seed(){
       },
       {
         title: "Count Digits",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "easy",
         description: "Return the number of digits in a given number using recursion.",
         constraints: [
@@ -668,7 +668,7 @@ async function seed(){
       },
       {
         title: "Power of a Number",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "medium",
         description: "Compute x raised to the power n using recursion.",
         constraints: [
@@ -682,7 +682,7 @@ async function seed(){
       },
       {
         title: "Check Palindrome (Recursive)",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "medium",
         description: "Check whether a string is a palindrome using recursion.",
         constraints: [
@@ -696,7 +696,7 @@ async function seed(){
       },
       {
         title: "Count Ways to Climb Stairs",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "medium",
         description: "Given n steps, you can climb 1 or 2 steps at a time. Return the number of ways using recursion.",
         constraints: [
@@ -709,7 +709,7 @@ async function seed(){
       },
       {
         title: "Binary Representation of a Number",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "medium",
         description: "Return the binary representation of a number using recursion.",
         constraints: [
@@ -722,7 +722,7 @@ async function seed(){
       },
       {
         title: "Reverse a String (Recursive)",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "medium",
         description: "Reverse a string using recursion.",
         constraints: [
@@ -735,7 +735,7 @@ async function seed(){
       },
       {
         title: "Generate All Balanced Parentheses",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "hard",
         description: "Generate all combinations of well-formed parentheses using recursion.",
         constraints: [
@@ -748,7 +748,7 @@ async function seed(){
       },
       {
         title: "Tower of Hanoi",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "hard",
         description: "Return the minimum number of moves required to move all disks from source to destination.",
         constraints: [
@@ -761,7 +761,7 @@ async function seed(){
       },
       {
         title: "Josephus Problem",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "hard",
         description: "Return the position of the last remaining person in the Josephus problem using recursion.",
         constraints: [
@@ -774,7 +774,7 @@ async function seed(){
       },
       {
         title: "Subset Sum",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "hard",
         description: "Return true if there exists a subset with sum equal to target using recursion.",
         constraints: [
@@ -787,7 +787,7 @@ async function seed(){
       },
       {
         title: "Generate All Permutations of a String",
-        topic: "recursion",
+        topic: "Recursion",
         difficulty: "hard",
         description: "Generate all permutations of a string using recursion.",
         constraints: [
@@ -826,7 +826,7 @@ async function seed(){
       },
       {
         title: "Minimum Cost Climbing Stairs",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "easy",
         description: "Return the minimum cost to reach the top of the floor.",
         constraints: [
@@ -839,7 +839,7 @@ async function seed(){
       },
       {
         title: "Decode Ways",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "easy",
         description: "Return the number of ways to decode a string of digits.",
         constraints: [
@@ -852,7 +852,7 @@ async function seed(){
       },
       {
         title: "Coin Change",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "medium",
         description: "Return the minimum number of coins needed to make up a given amount.",
         constraints: [
@@ -866,7 +866,7 @@ async function seed(){
       },
       {
         title: "Longest Increasing Subsequence",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "medium",
         description: "Return the length of the longest strictly increasing subsequence.",
         constraints: [
@@ -879,7 +879,7 @@ async function seed(){
       },
       {
         title: "Unique Paths",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "medium",
         description: "Return the number of unique paths from top-left to bottom-right of a grid.",
         constraints: [
@@ -892,7 +892,7 @@ async function seed(){
       },
       {
         title: "Partition Equal Subset Sum",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "medium",
         description: "Return true if the array can be partitioned into two subsets with equal sum.",
         constraints: [
@@ -905,7 +905,7 @@ async function seed(){
       },
       {
         title: "Partition Equal Subset Sum",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "medium",
         description: "Return true if the array can be partitioned into two subsets with equal sum.",
         constraints: [
@@ -918,7 +918,7 @@ async function seed(){
       },
       {
         title: "Longest Common Subsequence",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "medium",
         description: "Return the length of the longest common subsequence of two strings.",
         constraints: [
@@ -931,7 +931,7 @@ async function seed(){
       },
       {
         title: "0/1 Knapsack",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "hard",
         description: "Return the maximum value that can be put in a knapsack of given capacity.",
         constraints: [
@@ -945,7 +945,7 @@ async function seed(){
       },
       {
         title: "Edit Distance",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "hard",
         description: "Return the minimum number of operations to convert one string to another.",
         constraints: [
@@ -958,7 +958,7 @@ async function seed(){
       },
       {
         title: "Burst Balloons",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "hard",
         description: "Return the maximum coins you can collect by bursting balloons wisely.",
         constraints: [
@@ -971,7 +971,7 @@ async function seed(){
       },
       {
         title: "Matrix Chain Multiplication",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "hard",
         description: "Return the minimum number of multiplications needed to multiply matrices.",
         constraints: [
@@ -984,7 +984,7 @@ async function seed(){
       },
       {
         title: "Word Break",
-        topic: "dynamic-programming",
+        topic: "Dynamic-Programming",
         difficulty: "hard",
         description: "Return true if the string can be segmented into words from the dictionary.",
         constraints: [

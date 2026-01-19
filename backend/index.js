@@ -1,11 +1,13 @@
 const express=require("express")
 const mongoose=require("mongoose")
+const cors=require("cors")
 require("dotenv").config()
 const authRoutes=require("./authentication/auth")
 const app=express()
 const questionroutes=require("./routes/Route")
 const seed=require("./seed/Seedquestion")
 app.use(express.json())
+app.use(cors())
 
 
 mongoose.connect(process.env.MONGO_URI)
