@@ -43,7 +43,7 @@ const Topics = () => {
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
         <div className="w-full lg:w-80 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 backdrop-blur-md">
           <h2 className="text-xl font-semibold mb-4 text-purple-400">
-            Topic Name
+            {topic}
           </h2>
 
           <div className="space-y-2 text-sm">

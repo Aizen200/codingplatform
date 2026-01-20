@@ -1,8 +1,8 @@
 const express=require("express")
 const Question=require("../model/Question")
 const router=express.Router()
-
-router.get("/",async(req,res)=>{
+const {tokenmiddleware}=require("../middleware/Authmiddleware")
+router.get("/",tokenmiddleware,async(req,res)=>{
     const {difficulty}=req.query
     if (difficulty){
         const difquestion= await Question.find({difficulty:difficulty})
@@ -12,7 +12,7 @@ router.get("/",async(req,res)=>{
     const allquestions= await Question.find({})
     return res.status(200).json(allquestions) 
 })
-router.get("/:topic",async(req,res)=>{
+router.get("/:topic",tokenmiddleware,async(req,res)=>{
     const {topic}=req.params
     const {difficulty}=req.query
     if (difficulty){
@@ -25,7 +25,7 @@ router.get("/:topic",async(req,res)=>{
     return res.status(200).json(findquestion)
 
 })
-router.get("/:id",async(req,res)=>{
+router.get("/:id",tokenmiddleware,async(req,res)=>{
     const{id}=req.params
     const descquestion= await Question.find({_id:id})
     res.status(200).json(descquestion)
