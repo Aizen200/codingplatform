@@ -1,7 +1,26 @@
 import React from 'react'
 import{Link,useNavigate} from "react-router-dom"
+import api from "../axios/axios"
+import {useState } from 'react'
 const Signup = () => {
+  const [name,setName]=useState("")
+  const [email,setEmail]=useState("")
+  const [password,setPassword]=useState("")
   const navigate=useNavigate()
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    api.post("/auth/signup",{
+      username:name,
+      email:email,
+      password:password
+    }).then((data)=>{
+      console.log (data)
+      
+      navigate("/question/")
+    }).catch((err)=>{
+      console.log (err)
+    })}
+   
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
       
@@ -12,7 +31,7 @@ const Signup = () => {
           Algorythm
         </h1>
 
-
+      <form onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-4">
 
           <div>
@@ -20,6 +39,9 @@ const Signup = () => {
               Username
             </label>
             <input
+            onChange={(e)=>{
+              setName(e.target.value)
+            }}
               type="text"
               className="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white focus:outline-none focus:border-purple-500"
             />
@@ -31,6 +53,9 @@ const Signup = () => {
             </label>
             <input
               type="email"
+              onChange={(e)=>{
+                setEmail(e.target.value)
+              }}
               className="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white focus:outline-none focus:border-purple-500"
             />
           </div>
@@ -41,16 +66,22 @@ const Signup = () => {
             </label>
             <input
               type="password"
+              onChange={(e)=>{
+                setPassword(e.target.value)
+              }}
               className="w-full px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white focus:outline-none focus:border-purple-500"
             />
           </div>
 
 
-          <button  onClick={()=>navigate("/question")}className="mt-4 w-full py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 transition">
+          <button className="mt-4 w-full py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 transition">
             Sign Up
           </button>
+          
           <p className="text-center text-white">Already a user  <Link to="/Login"> login</Link></p>
+
         </div>
+        </form>
 
       </div>
     </div>

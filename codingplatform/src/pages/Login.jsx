@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
+import api from "../axios/axios";
 export default function Login() {
+  const[email,setEmail]=useState(null)
+  const[password,setPassword]=useState(null)
+  useEffect(()=>{
+    api.post()
+  })
   const navigate = useNavigate();
   return (
     <div className="min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-32 -left-32 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
-        {/* <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl"></div> */}
       </div>
 
       <div
@@ -44,7 +50,7 @@ export default function Login() {
           Login →
         </button>
         <p className="text-center text-white">
-          if new user <Link to="/Signup"> Signup</Link>
+          if new user <Link to="/auth/signup"> Signup</Link>
         </p>
       </div>
     </div>
