@@ -13,12 +13,11 @@ const Signup = () => {
       username:name,
       email:email,
       password:password
-    }).then((data)=>{
-      console.log (data)
-      
+    }).then(()=>{
+
       navigate("/question/")
     }).catch((err)=>{
-      console.log (err)
+      return  (err)
     })}
    
   return (
@@ -78,7 +77,7 @@ const Signup = () => {
             Sign Up
           </button>
           
-          <p className="text-center text-white">Already a user  <Link to="/Login"> login</Link></p>
+          <p className="text-center text-white">Already a user  <Link to="/auth/login"> login</Link></p>
 
         </div>
         </form>
