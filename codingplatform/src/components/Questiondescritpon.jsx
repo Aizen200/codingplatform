@@ -2,7 +2,7 @@ import React from "react";
 
 const Questiondescritpon = () => {
   return (
-    <div className="h-full overflow-y-auto bg-[#020617] text-gray-200 p-6">
+    <div className="h-full overflow-y-auto  bg-[#020617] text-gray-200 p-6 static w-[30%]">
       
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">

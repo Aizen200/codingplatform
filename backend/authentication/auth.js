@@ -2,7 +2,7 @@ const express=require("express")
 const bcrypt =require("bcrypt")
 const router=express.Router()
 const User=require("../model/User")
-const jwt=require("jsonwebtoken")
+
 const {signUpmiddleware}=require("../middleware/Authmiddleware")
 router.post("/signup",signUpmiddleware,async (req,res)=>{
     const {username,password,email}=req.body
@@ -31,10 +31,7 @@ router.post("/login",async (req,res)=>{
     }
     const compare=await bcrypt.compare(password,loginuser.password)
     if (!compare){
-        return res.status(400).send("Incorrect password")
+        return res.status(401).send("Incorrect password")
     }
-    const decode=jwt.sign({userId:loginuser._id},process.env.JWT_secret,{expiresIn:'1d'})
-    
-    return res.status(200).json(decode)
 })
 module.exports=router

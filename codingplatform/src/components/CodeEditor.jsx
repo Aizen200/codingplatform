@@ -16,7 +16,7 @@ export default function CodeEditor() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] text-gray-200 p-6 flex flex-col gap-6">
+    <div className="min-h-screen bg-[#020617] text-gray-200 p-6 flex flex-col gap-6 w-[70%]">
 
      
       <div className=" flex gap-4 flex-row-reverse">
@@ -30,7 +30,7 @@ export default function CodeEditor() {
       </div>
 
      
-      <div className="border border-gray-700 rounded-md overflow-hidden">
+      <div className="border border-gray-700 rounded-md overflow-hidden static">
         <Editor
           height="60vh"
           language="python"
