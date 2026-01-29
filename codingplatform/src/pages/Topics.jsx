@@ -1,6 +1,6 @@
 import React from 'react'
 import { Filter, User } from 'lucide-react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
 import api from '../axios/axios';
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -60,9 +60,9 @@ const Topics = () => {
               {
                 topicquestion.map((x)=>
                 <tr className="border-b border-slate-800 hover:bg-slate-800/40 transition">
-                  <td className="px-4 sm:px-6 py-4">
+                  <Link to="/Description"><td className="px-4 sm:px-6 py-4">
                   <div>{x.title}</div> <div>{x.difficulty}</div>
-                </td>
+                </td></Link>
                 </tr>)
               }
         
