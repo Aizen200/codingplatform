@@ -1,19 +1,37 @@
 import Editor from "@monaco-editor/react";
 import { useRef, useState } from "react";
+import api from "../axios/axios"
 
 export default function CodeEditor() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const coderef = useRef();
-
   function mount(editor) {
     coderef.current = editor;
   }
 
-  function runbutton() {
-    const val = coderef.current.getValue();
-    setOutput(val + "\n\n" + input);
+  async function runbutton() {
+  const code = coderef.current.getValue();
+  setOutput("Running...");
+
+  try {
+    const response = await api.post("/submission/run", {
+      code: code,
+      input:input
+    });
+
+    const data = response.data;
+
+    setOutput(
+      data.run?.stdout ||
+      data.run?.stderr ||
+      "No output"
+    );
+  } catch (error) {
+    console.error(error);
+    setOutput("Error while executing code");
   }
+}
 
   return (
     <div className="min-h-screen bg-[#020617] text-gray-200 p-6 flex flex-col gap-6 w-[70%]">
@@ -47,9 +65,7 @@ export default function CodeEditor() {
           <div className="px-4 py-2 text-indigo-400 border-b-2 border-indigo-500">
             INPUT
           </div>
-          <div className="px-4 py-2 text-gray-400">
-            OUTPUT
-          </div>
+
         </div>
 
 
