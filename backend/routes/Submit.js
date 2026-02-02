@@ -1,6 +1,5 @@
 const express=require("express")
 const Answer=require("../model/Solution")
-const Output=require("../model/Question")
 const runcode=require("../function/run")
 const router=express.Router()
 router.post("/run",async (req,res)=>{

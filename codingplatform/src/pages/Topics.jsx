@@ -60,7 +60,7 @@ const Topics = () => {
               {
                 topicquestion.map((x)=>
                 <tr className="border-b border-slate-800 hover:bg-slate-800/40 transition">
-                  <Link to="/Description"><td className="px-4 sm:px-6 py-4">
+                  <Link to={`/solve/${x._id}`}><td className="px-4 sm:px-6 py-4">
                   <div>{x.title}</div> <div>{x.difficulty}</div>
                 </td></Link>
                 </tr>)

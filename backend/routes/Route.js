@@ -25,9 +25,4 @@ router.get("/:topic",async(req,res)=>{
     return res.status(200).json(findquestion)
 
 })
-router.get("/:id",async(req,res)=>{
-    const{id}=req.params
-    const descquestion= await Question.find({_id:id})
-    res.status(200).json(descquestion)
-})
 module.exports=router

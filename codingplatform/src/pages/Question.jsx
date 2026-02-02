@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Filter, User } from "lucide-react";
 import api from "../axios/axios";
 import { useNavigate,Link } from "react-router-dom";
-import Description from "./Description";
+
 
 const Question = () => {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const Question = () => {
                (
                 <tr className="border-b border-slate-800 hover:bg-slate-800/40 transition">
                   <td className=" px-4 sm:px-6 py-4 grid grid-cols-2 gap-4">
-                   <Link to="/Description"><div>{x.title}</div> <div className="capitalize">{x.difficulty}</div></Link> 
+                   <Link to={`/solve/${x._id}`}><div>{x.title}</div> <div className="capitalize">{x.difficulty}</div></Link> 
                   </td>
                 </tr>
               )
