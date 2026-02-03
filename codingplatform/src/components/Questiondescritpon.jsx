@@ -23,7 +23,7 @@ const Questiondescritpon = () => {
 
   return (
     <div className="h-full overflow-y-auto bg-[#020617] text-slate-200 p-6 w-[30%]">
-      <button className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-md text-sm font-semibold mb-4"> Back</button>
+      
       <div className="space-y-6">
 
 
