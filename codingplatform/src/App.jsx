@@ -14,6 +14,7 @@ const App = () => {
       <Route path="/questions/:topic" element={<Topics/>}></Route>
       <Route path='/solve/:id' element={<Description/>}></Route>
     </Routes>
+    
   )
 }
 
