@@ -33,5 +33,8 @@ router.post("/login",async (req,res)=>{
     if (!compare){
         return res.status(401).send("Incorrect password")
     }
+    return res.status(200).json({"id":loginuser._id,
+        "email":loginuser.email
+    })
 })
 module.exports=router

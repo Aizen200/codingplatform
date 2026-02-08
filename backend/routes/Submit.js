@@ -17,7 +17,7 @@ router.post("/run",async (req,res)=>{
     }
 })
 router.post("/submit",async(req,res)=>{
-    const{code,questionId}=req.body
+    const{code,questionId,userId}=req.body
     if(!code){
         return res.status(400).json({"mess":"no code to submit"})
     }
@@ -29,10 +29,8 @@ router.post("/submit",async(req,res)=>{
         for (let tc of testcase.testcase){
            const ans= await runcode(code,tc.input)
            if (ans.stderr && ans.stderr.length>0){
-            return res.json({ "verdict": "RE", "error": result.stderr });
+            return res.json({ "verdict": "RE", "error": ans.stderr });
            }
-        
-        }
         const actual=ans.stdout.trim()
         const expect=testcase.expectedOutput.trim()
         if(actual!==expect){
@@ -42,6 +40,15 @@ router.post("/submit",async(req,res)=>{
                 actual
             })
         }
+        
+        }
+        await Answer.create({
+        
+                questionId:questionId,
+                userId:userId,
+                answer:code
+            
+        })
         return res.json({"verdict":"AC"})
     }
     catch(err){

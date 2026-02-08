@@ -8,10 +8,6 @@ const solutionschema=mongoose.Schema({
         type:String,
         required:true
     },
-    language:{
-        type:String,
-        required:true
-    },
     answer:{
         type:String,
         required:true

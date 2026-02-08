@@ -12,7 +12,8 @@ export default function Login() {
     api.post("/auth/login",{
       email:email,
       password:password
-    }).then(()=>{
+    }).then((e)=>{
+      localStorage.setItem("userId", e.data._id);
       navigate("/question")
 
     }).catch((err)=>{
