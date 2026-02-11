@@ -8,19 +8,37 @@ const Topics = () => {
   const navigate = useNavigate();
 
   const [topicquestion, setTopicquestion] = useState([]);
+  const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   const [searchParams, setSearchParams] = useSearchParams();
   const difficulty = searchParams.get("difficulty");
+
 
   useEffect(() => {
     api
       .get(`/questions/${topic}`, {
         params: difficulty ? { difficulty } : {},
       })
-      .then((response) => setTopicquestion(response.data))
-      .catch((err) => err);
+      .then((response) => {
+        setTopicquestion(response.data);
+        setFilteredQuestions(response.data);
+      })
+      .catch((err) => console.log(err));
   }, [topic, difficulty]);
+
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      const filtered = topicquestion.filter((q) =>
+        q.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredQuestions(filtered);
+    }, 300);
+
+    return () => clearTimeout(delayDebounce);
+  }, [search, topicquestion]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-200 px-4 sm:px-6 py-4">
@@ -36,6 +54,8 @@ const Topics = () => {
           <input
             type="text"
             placeholder="Search problems"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             className="flex-1 sm:flex-none bg-slate-800/60 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-purple-500"
           />
 
@@ -94,7 +114,7 @@ const Topics = () => {
         <div className="flex-1 bg-slate-900/60 border border-slate-800 rounded-2xl overflow-x-auto">
           <table className="min-w-full">
             <tbody>
-              {topicquestion.map((x) => (
+              {filteredQuestions.map((x) => (
                 <tr
                   key={x._id}
                   className="border-b border-slate-800 hover:bg-slate-800/40 transition"
