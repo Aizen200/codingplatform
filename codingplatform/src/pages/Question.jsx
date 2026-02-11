@@ -6,10 +6,13 @@ import { useNavigate, Link, useSearchParams } from "react-router-dom";
 const Question = () => {
   const navigate = useNavigate();
   const [question, setQuestion] = useState([]);
+  const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   const [searchParams, setSearchParams] = useSearchParams();
   const difficulty = searchParams.get("difficulty");
+
 
   useEffect(() => {
     api
@@ -18,9 +21,21 @@ const Question = () => {
       })
       .then((response) => {
         setQuestion(response.data);
+        setFilteredQuestions(response.data);
       })
-      .catch((err) => err);
+      .catch((err) => console.log(err));
   }, [difficulty]);
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      const filtered = question.filter((q) =>
+        q.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredQuestions(filtered);
+    }, 300);
+
+    return () => clearTimeout(delayDebounce);
+  }, [search, question]);
 
   const applyFilter = (diff) => {
     if (diff) {
@@ -42,6 +57,8 @@ const Question = () => {
           <input
             type="text"
             placeholder="Search problems"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             className="bg-slate-800/60 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-purple-500"
           />
 
@@ -99,7 +116,7 @@ const Question = () => {
       <div className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden">
         <table className="w-full text-left">
           <tbody>
-            {question.map((x) => (
+            {filteredQuestions.map((x) => (
               <tr
                 key={x._id}
                 className="border-b border-slate-800 hover:bg-slate-800/40 transition"
