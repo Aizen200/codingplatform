@@ -25,6 +25,11 @@ const Questiondescritpon = () => {
       <div className="space-y-6">
 
         <div className="space-y-2">
+              <button
+          className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-md text-sm font-semibold"
+        >
+          Back
+        </button>
           <h2 className="text-2xl font-bold text-slate-100">
             {desc.title}
           </h2>
@@ -52,8 +57,7 @@ const Questiondescritpon = () => {
             Input
           </h4>
           <p className="text-sm text-slate-400">
-            [{desc.testcase[0].input.join(",")}]
-          </p>
+            </p>
         </div>
 
         <div className="space-y-1">
@@ -61,7 +65,7 @@ const Questiondescritpon = () => {
             Output
           </h4>
           <p className="text-sm text-slate-400">
-            [{desc.testcase[0].expectedOutput.join(",")}]
+            
           </p>
         </div>
 

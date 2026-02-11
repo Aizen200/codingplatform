@@ -1,33 +1,34 @@
 import { useEffect, useState } from "react";
 import { Filter, User } from "lucide-react";
 import api from "../axios/axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 
 const Question = () => {
   const navigate = useNavigate();
   const [question, setQuestion] = useState([]);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    api
-      .get("/questions/")
-      .then((response) => {
-        setQuestion(response.data);
-      })
-      .catch((err) => {
-        return err;
-      });
-  }, []);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const difficulty = searchParams.get("difficulty");
 
-  const applyFilter = (difficulty) => {
+  useEffect(() => {
     api
       .get("/questions", {
         params: difficulty ? { difficulty } : {},
       })
-      .then((res) => {
-        setQuestion(res.data);
-        setOpen(false);
-      });
+      .then((response) => {
+        setQuestion(response.data);
+      })
+      .catch((err) => err);
+  }, [difficulty]);
+
+  const applyFilter = (diff) => {
+    if (diff) {
+      setSearchParams({ difficulty: diff });
+    } else {
+      setSearchParams({});
+    }
+    setOpen(false);
   };
 
   return (
@@ -86,6 +87,7 @@ const Question = () => {
           "Two-Pointers",
         ].map((topic) => (
           <button
+            key={topic}
             onClick={() => navigate(`/questions/${topic}`)}
             className="px-4 py-2 rounded-full bg-slate-800/60 border border-slate-700 hover:border-purple-500 hover:text-white transition"
           >
@@ -98,7 +100,10 @@ const Question = () => {
         <table className="w-full text-left">
           <tbody>
             {question.map((x) => (
-              <tr className="border-b border-slate-800 hover:bg-slate-800/40 transition">
+              <tr
+                key={x._id}
+                className="border-b border-slate-800 hover:bg-slate-800/40 transition"
+              >
                 <td className="px-4 sm:px-6 py-4 grid grid-cols-2 gap-4">
                   <Link to={`/solve/${x._id}`}>
                     <div>{x.title}</div>

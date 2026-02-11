@@ -13,5 +13,5 @@ const solutionschema=mongoose.Schema({
         required:true
     }
 })
-const solution=solutionschema
-module.exports=solution
+const Solution=mongoose.model("Answer",solutionschema)
+module.exports=Solution

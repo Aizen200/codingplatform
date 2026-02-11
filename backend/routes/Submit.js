@@ -1,5 +1,5 @@
 const express=require("express")
-const Answer=require("../model/Solution")
+const Solution=require("../model/Solution")
 const runcode=require("../function/run")
 const question=require("../model/Question")
 const router=express.Router()
@@ -16,43 +16,52 @@ router.post("/run",async (req,res)=>{
         return res.status(400).json(err)
     }
 })
-router.post("/submit",async(req,res)=>{
-    const{code,questionId,userId}=req.body
-    if(!code){
-        return res.status(400).json({"mess":"no code to submit"})
+router.post("/submit", async (req, res) => {
+  const { code, questionId, userId } = req.body;
+
+  if (!code || !questionId || !userId) {
+    return res.status(400).json({ message: "missing fields" });
+  }
+
+  try {
+    const ques = await question.findById(questionId);
+
+    if (!ques) {
+      return res.status(400).json({ message: "question not found" });
     }
-    try{
-        const testcase=await question.findOne({_id:questionId})
-        if(!testcase){
-            return res.status(400).json({"mess":"question not found"})
-        }
-        for (let tc of testcase.testcase){
-           const ans= await runcode(code,tc.input)
-           if (ans.stderr && ans.stderr.length>0){
-            return res.json({ "verdict": "RE", "error": ans.stderr });
-           }
-        const actual=ans.stdout.trim()
-        const expect=testcase.expectedOutput.trim()
-        if(actual!==expect){
-            return res.json({
-                "verdict":"WA",
-                expect,
-                actual
-            })
-        }
-        
-        }
-        await Answer.create({
-        
-                questionId:questionId,
-                userId:userId,
-                answer:code
-            
-        })
-        return res.json({"verdict":"AC"})
+
+    for (let tc of ques.testcase) {
+      const ans = await runcode(code, tc.input);
+
+      if (ans.stderr && ans.stderr.length > 0) {
+        return res.json({ verdict: "RE", error: ans.stderr });
+      }
+
+      const actual = String(ans.run?.stdout ?? "").trim();
+      const expected = String(tc.expectedOutput).trim();
+
+      if (actual !== expected) {
+        return res.json({
+          verdict: "WA",
+          expected,
+          actual,
+        });
+      }
     }
-    catch(err){
-        return res.status(400).json(err)
-    }
-})
+
+   await Solution.create({
+  userid: userId,
+  questionid: questionId,
+  answer: code,
+});
+    return res.json({ verdict: "AC" });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "server error" });
+  }
+});
+
+
+
 module.exports=router

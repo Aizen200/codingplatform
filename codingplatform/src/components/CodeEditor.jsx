@@ -4,14 +4,14 @@ import { useParams } from "react-router-dom";
 import api from "../axios/axios";
 
 export default function CodeEditor() {
-  const { id: questionId } = useParams();
-  const userId = localStorage.getItem("userId");
-
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [verdict, setVerdict] = useState(null);
+  const [ok, setOk] = useState("");
 
   const coderef = useRef();
+  const { id: questionId } = useParams();
+  const userID = localStorage.getItem("userId");
+
 
   function mount(editor) {
     coderef.current = editor;
@@ -22,17 +22,20 @@ export default function CodeEditor() {
     setOutput("Running...");
 
     try {
-      const res = await api.post("/submission/run", {
-        code,
-        input
+      const response = await api.post("/submission/run", {
+        code: code,
+        input: input
       });
 
+      const data = response.data;
+
       setOutput(
-        res.data.run?.stdout ||
-        res.data.run?.stderr ||
+        data.run?.stdout ||
+        data.run?.stderr ||
         "No output"
       );
-    } catch {
+    } catch (error) {
+      console.error(error);
       setOutput("Error while executing code");
     }
   }
@@ -40,18 +43,20 @@ export default function CodeEditor() {
   async function submit() {
     const code = coderef.current.getValue();
 
-    const res = await api.post("/submission/submit", {
-      code,
-      questionId,
-      userId
-    });
-
-    setVerdict(res.data.verdict);
+    try {
+      const response = await api.post("/submission/submit", {
+        code,
+        questionId,
+        userId: userID
+      });
+      setOk(response.data);
+    } catch (err) {
+      setOk("Submission failed");
+    }
   }
 
   return (
     <div className="min-h-screen bg-[#020617] text-gray-200 p-6 flex flex-col gap-6 w-[70%]">
-
       <div className="flex gap-4 flex-row-reverse">
         <button
           onClick={submit}
@@ -68,30 +73,51 @@ export default function CodeEditor() {
         </button>
       </div>
 
-      {verdict && (
-        <div className="text-emerald-400 font-semibold">
-          Verdict: {verdict}
-        </div>
+      {ok && (
+        <div className="text-green-400 font-semibold">
+          Verdict: {ok.verdict}
+           {ok.actual !== undefined && (
+      <div className="text-red-400">
+        Actual: {ok.actual}
+      </div>
+    )}
+
+    {ok.expected !== undefined && (
+      <div className="text-yellow-400">
+        Expected: {ok.expected}
+      </div>
+    )}
+  </div>
       )}
 
-      <Editor
-        height="60vh"
-        language="python"
-        theme="vs-dark"
-        onMount={mount}
-      />
+      <div className="border border-gray-700 rounded-md overflow-hidden static">
+        <Editor
+          height="60vh"
+          language="python"
+          theme="vs-dark"
+          onMount={mount}
+        />
+      </div>
 
-      <textarea
-        placeholder="Enter input here..."
-        onChange={(e) => setInput(e.target.value)}
-        className="w-full h-32 bg-[#020617] text-gray-200 font-mono text-sm p-4 outline-none border border-gray-700 resize-none"
-      />
+      <div className="border border-gray-700 rounded-md">
+        <div className="flex border-b border-gray-700 text-sm">
+          <div className="px-4 py-2 text-indigo-400 border-b-2 border-indigo-500">
+            INPUT
+          </div>
+        </div>
 
-      <textarea
-        value={output}
-        readOnly
-        className="w-full h-32 bg-[#020617] text-gray-300 font-mono text-sm p-4 outline-none resize-none"
-      />
+        <textarea
+          placeholder="Enter input here..."
+          onChange={(e) => setInput(e.target.value)}
+          className="w-full h-32 bg-[#020617] text-gray-200 font-mono text-sm p-4 outline-none border-b border-gray-700 resize-none"
+        />
+
+        <textarea
+          value={output}
+          readOnly
+          className="w-full h-32 bg-[#020617] text-gray-300 font-mono text-sm p-4 outline-none resize-none"
+        />
+      </div>
     </div>
   );
 }

@@ -11,12 +11,10 @@ const submissionroutes=require("./routes/Submit")
 const solvingroute=require('./routes/Solve')
 app.use(express.json())
 app.use(cors())
-
-
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("DB connected"))
   .catch(err => console.log(err));
-
+mongoose.set("bufferCommands", false);
 app.use("/auth",authRoutes)
 app.use("/questions",questionroutes)
 app.use("/submission",submissionroutes)
