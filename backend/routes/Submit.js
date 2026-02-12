@@ -2,6 +2,7 @@ const express=require("express")
 const Solution=require("../model/Solution")
 const runcode=require("../function/run")
 const question=require("../model/Question")
+const User=require("../model/User")
 const router=express.Router()
 router.post("/run",async (req,res)=>{
     const {code,input}=req.body
@@ -48,7 +49,11 @@ router.post("/submit", async (req, res) => {
         });
       }
     }
-
+    await User.findByIdAndUpdate( userId,{
+        $addToSet:{questionTitle:ques.title}
+       
+    
+    })
    await Solution.create({
   userid: userId,
   questionid: questionId,

@@ -2,7 +2,7 @@ const mongoose=require("mongoose")
 const userSchema=new mongoose.Schema({
     name:{
         type:String,
-        requred:true
+        required:true
     },
     password:{
         type:String,
@@ -13,6 +13,11 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true,
         unique:true
+    },
+    questionTitle:{
+        type:[String],
+        default: []
+
     }
 })
 const User=mongoose.model('User',userSchema)
