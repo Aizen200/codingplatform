@@ -13,6 +13,7 @@ const Question = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const difficulty = searchParams.get("difficulty");
 
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     api
@@ -90,7 +91,10 @@ const Question = () => {
           )}
         </div>
 
-        <button className="w-9 h-9 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center font-semibold">
+        <button
+          onClick={() => navigate(`/user/${currentUser?.name}`)}
+          className="w-9 h-9 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center font-semibold"
+        >
           <User />
         </button>
       </div>

@@ -15,7 +15,7 @@ export default function Login() {
       password
     })
       .then((res) => {
-        localStorage.setItem("userId", res.data.id);
+        localStorage.setItem("userId",res.data.id);
         navigate("/question");
       })
       .catch((err) => {
