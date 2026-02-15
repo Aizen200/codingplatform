@@ -1,5 +1,6 @@
 const express=require("express")
 const bcrypt =require("bcrypt")
+const jwt = require("jsonwebtoken");
 const router=express.Router()
 const User=require("../model/User")
 
@@ -20,9 +21,16 @@ router.post("/signup", signUpmiddleware, async (req, res) => {
     email: email
   });
 
+  const token = jwt.sign(
+    { id: user._id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: "1h" }
+  );
+
   return res.status(201).json({
     id: user._id,
-    email: user.email
+    email: user.email,
+    token
   });
 });
 router.post("/login",async (req,res)=>{
@@ -38,9 +46,16 @@ router.post("/login",async (req,res)=>{
     if (!compare){
         return res.status(401).send("Incorrect password")
     }
+    const token = jwt.sign(
+        { id: loginuser._id, email: loginuser.email },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
+    );
+
     return res.status(200).json({"id":loginuser._id,
         "email":loginuser.email,
-        "name":loginuser.name
+        "name":loginuser.name,
+        "token": token
     })
 })
 module.exports=router

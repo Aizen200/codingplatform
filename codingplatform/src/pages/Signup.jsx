@@ -21,7 +21,9 @@ const Signup = () => {
       password
     })
       .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data));
+        // Backend response doesn't include name, so we add it manually from state
+        const user = { ...res.data, name: name };
+        localStorage.setItem("user", JSON.stringify(user));
         navigate("/question");
       })
       .catch((err) => {

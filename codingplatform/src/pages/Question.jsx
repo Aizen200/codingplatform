@@ -92,7 +92,14 @@ const Question = () => {
         </div>
 
         <button
-          onClick={() => navigate(`/user/${currentUser?.name}`)}
+          onClick={() => {
+            if (currentUser?.name) {
+              navigate(`/user/${currentUser.name}`);
+            } else {
+               // Fallback if name is missing (e.g. from old login), redirect to login or handle gracefully
+               navigate("/");
+            }
+          }}
           className="w-9 h-9 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center font-semibold"
         >
           <User />
