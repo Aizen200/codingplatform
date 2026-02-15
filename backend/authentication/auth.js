@@ -39,7 +39,8 @@ router.post("/login",async (req,res)=>{
         return res.status(401).send("Incorrect password")
     }
     return res.status(200).json({"id":loginuser._id,
-        "email":loginuser.email
+        "email":loginuser.email,
+        "name":loginuser.name
     })
 })
 module.exports=router

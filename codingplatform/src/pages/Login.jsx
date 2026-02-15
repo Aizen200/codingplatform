@@ -15,7 +15,10 @@ export default function Login() {
       password
     })
       .then((res) => {
-        localStorage.setItem("userId",res.data.id);
+
+
+        localStorage.setItem("user", JSON.stringify(res.data));
+
         navigate("/question");
       })
       .catch((err) => {
@@ -35,6 +38,7 @@ export default function Login() {
             <label className="text-slate-300 text-sm">Email</label>
             <input
               type="email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white"
             />
@@ -44,12 +48,16 @@ export default function Login() {
             <label className="text-slate-300 text-sm">Password</label>
             <input
               type="password"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white"
             />
           </div>
 
-          <button className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500">
+          <button
+            type="submit"
+            className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500"
+          >
             Login →
           </button>
 
@@ -61,4 +69,3 @@ export default function Login() {
     </div>
   );
 }
-

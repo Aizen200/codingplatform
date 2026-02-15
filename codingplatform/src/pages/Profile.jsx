@@ -33,6 +33,13 @@ const Profile = () => {
     );
   }
 
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center">
+        User not found
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-200 px-6 py-6">
@@ -44,16 +51,13 @@ const Profile = () => {
         ← Back
       </button>
 
-
       <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 mb-8 shadow-lg">
-        
         <div className="flex items-center gap-4 mb-6">
           <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
             <User size={28} />
           </div>
 
           <div>
-
             <h2 className="text-2xl font-semibold">{user.name}</h2>
             <div className="flex items-center gap-2 text-slate-400 text-sm">
               <Mail size={14} />
@@ -61,7 +65,6 @@ const Profile = () => {
             </div>
           </div>
         </div>
-
       </div>
 
       <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-lg">
@@ -69,13 +72,13 @@ const Profile = () => {
           Solved Problems
         </h3>
 
-        {user.questionTitle.length === 0 ? (
+        {user.questionTitle?.length === 0 ? (
           <p className="text-slate-400 text-sm">
             No problems solved yet.
           </p>
         ) : (
           <ul className="space-y-3">
-            {user.questionTitle.map((title, index) => (
+            {user.questionTitle?.map((title, index) => (
               <li
                 key={index}
                 className="border border-slate-800 rounded-lg px-4 py-3 hover:bg-slate-800/40 transition"

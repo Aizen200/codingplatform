@@ -17,7 +17,9 @@ const Signup = () => {
       password
     })
       .then((res) => {
-        localStorage.setItem("userId", res.data.id);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        console.log(localStorage.getItem("user"))
+
         navigate("/question");
       })
       .catch((err) => {
@@ -36,12 +38,14 @@ const Signup = () => {
           <div className="flex flex-col space-y-4">
             <input
               placeholder="Username"
+              value={name}
               onChange={(e) => setName(e.target.value)}
               className="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white"
             />
 
             <input
               placeholder="Email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white"
             />
@@ -49,6 +53,7 @@ const Signup = () => {
             <input
               type="password"
               placeholder="Password"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white"
             />
