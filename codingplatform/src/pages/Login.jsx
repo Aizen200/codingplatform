@@ -5,24 +5,29 @@ import api from "../axios/axios";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
     api.post("/auth/login", {
       email,
       password
     })
       .then((res) => {
-
-
         localStorage.setItem("user", JSON.stringify(res.data));
-
         navigate("/question");
       })
       .catch((err) => {
         console.error(err);
+        setError(err.response?.data?.message || "Login failed. Please check your credentials.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -54,11 +59,18 @@ export default function Login() {
             />
           </div>
 
+          {error && (
+            <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-sm p-3 rounded-xl text-center">
+              {error}
+            </div>
+          )}
+
           <button
             type="submit"
-            className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500"
+            disabled={loading}
+            className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
           >
-            Login →
+            {loading ? "Logging in..." : "Login →"}
           </button>
 
           <p className="text-center text-white">

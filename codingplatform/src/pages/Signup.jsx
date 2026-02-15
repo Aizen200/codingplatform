@@ -6,10 +6,14 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
     api.post("/auth/signup", {
       username: name,
@@ -18,12 +22,14 @@ const Signup = () => {
     })
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
-        console.log(localStorage.getItem("user"))
-
         navigate("/question");
       })
       .catch((err) => {
         console.error(err);
+        setError(err.response?.data?.message || "Signup failed. Please try again.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -58,8 +64,18 @@ const Signup = () => {
               className="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white"
             />
 
-            <button className="mt-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500">
-              Sign Up
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-sm p-3 rounded-xl text-center">
+                {error}
+              </div>
+            )}
+
+            <button
+               type="submit"
+               disabled={loading}
+               className="mt-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+            >
+              {loading ? "Signing up..." : "Sign Up"}
             </button>
 
             <p className="text-center text-white">
