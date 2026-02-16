@@ -51,7 +51,7 @@ const Profile = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-200 p-6 md:p-12 font-sans">
       <div className="max-w-4xl mx-auto space-y-8">
         
-        {/* Header / Back Button */}
+
         <div>
           <button
             onClick={() => navigate(-1)}
@@ -62,14 +62,13 @@ const Profile = () => {
           </button>
         </div>
 
-        {/* Profile Card */}
         <div className="relative overflow-hidden rounded-3xl bg-slate-900/40 backdrop-blur-xl border border-white/5 shadow-2xl p-8 md:p-10">
-          {/* Background Decorative Gradients */}
+   
           <div className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
           <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-            {/* Avatar */}
+
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
               <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full bg-slate-950 flex items-center justify-center border-4 border-slate-900 shadow-xl">
@@ -80,7 +79,7 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* User Info */}
+
             <div className="flex-1 text-center md:text-left space-y-3">
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
@@ -104,7 +103,7 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Solved Problems Section */}
+
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-white flex items-center gap-3">
@@ -135,7 +134,7 @@ const Profile = () => {
               {user.questionTitle.map((title, index) => (
                 <div
                   key={index}
-                  onClick={() => {/* If we had route to problem by title, we could link here, or if backend provided ID */}}
+                  onClick={() => {}}
                   className="group relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/50 hover:border-purple-500/30 p-5 transition-all duration-300 hover:bg-slate-800/40 cursor-default"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/0 to-purple-500/0 group-hover:via-purple-500/5 group-hover:to-purple-500/10 transition-all duration-500"></div>

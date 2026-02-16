@@ -28,13 +28,13 @@ export default function CodeEditor() {
 
       const data = response.data;
 
-      // ✅ FIXED HERE (removed .run)
+
       setOutput(
         data.stderr
           ? data.stderr
           : data.stdout
           ? data.stdout
-          : "No output"
+          : "Code execution temporarily disabled due to third-party API restrictions."
       );
     } catch (error) {
       console.error(error);
