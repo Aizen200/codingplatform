@@ -6,12 +6,11 @@ import api from "../axios/axios";
 export default function CodeEditor() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [ok, setOk] = useState("");
+  const [ok, setOk] = useState(null);
 
   const coderef = useRef();
   const { id: questionId } = useParams();
   const userID = localStorage.getItem("userId");
-
 
   function mount(editor) {
     coderef.current = editor;
@@ -24,15 +23,18 @@ export default function CodeEditor() {
     try {
       const response = await api.post("/submission/run", {
         code: code,
-        input: input
+        input: input,
       });
 
       const data = response.data;
 
+      // ✅ FIXED HERE (removed .run)
       setOutput(
-        data.run?.stdout ||
-        data.run?.stderr ||
-        "No output"
+        data.stderr
+          ? data.stderr
+          : data.stdout
+          ? data.stdout
+          : "No output"
       );
     } catch (error) {
       console.error(error);
@@ -47,11 +49,13 @@ export default function CodeEditor() {
       const response = await api.post("/submission/submit", {
         code,
         questionId,
-        userId: userID
+        userId: userID,
       });
+
       setOk(response.data);
     } catch (err) {
-      setOk("Submission failed");
+      console.error(err);
+      setOk({ verdict: "Submission failed" });
     }
   }
 
@@ -76,21 +80,22 @@ export default function CodeEditor() {
       {ok && (
         <div className="text-green-400 font-semibold">
           Verdict: {ok.verdict}
-           {ok.actual !== undefined && (
-      <div className="text-red-400">
-        Actual: {ok.actual}
-      </div>
-    )}
 
-    {ok.expected !== undefined && (
-      <div className="text-yellow-400">
-        Expected: {ok.expected}
-      </div>
-    )}
-  </div>
+          {ok.actual !== undefined && (
+            <div className="text-red-400">
+              Actual: {ok.actual}
+            </div>
+          )}
+
+          {ok.expected !== undefined && (
+            <div className="text-yellow-400">
+              Expected: {ok.expected}
+            </div>
+          )}
+        </div>
       )}
 
-      <div className="border border-gray-700 rounded-md overflow-hidden static">
+      <div className="border border-gray-700 rounded-md overflow-hidden">
         <Editor
           height="60vh"
           language="python"

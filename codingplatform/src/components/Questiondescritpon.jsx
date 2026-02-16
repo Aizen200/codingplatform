@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../axios/axios";
 
 const Questiondescritpon = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [desc, setDesc] = useState(null);
 
   useEffect(() => {
@@ -25,11 +26,13 @@ const Questiondescritpon = () => {
       <div className="space-y-6">
 
         <div className="space-y-2">
-              <button
-          className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-md text-sm font-semibold"
-        >
-          Back
-        </button>
+          <button
+            onClick={() => navigate(-1)}
+            className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-md text-sm font-semibold"
+          >
+            Back
+          </button>
+
           <h2 className="text-2xl font-bold text-slate-100">
             {desc.title}
           </h2>
@@ -49,23 +52,6 @@ const Questiondescritpon = () => {
           </h4>
           <p className="text-sm text-slate-400">
             {desc.constraints}
-          </p>
-        </div>
-
-        <div className="space-y-1">
-          <h4 className="text-xs font-semibold uppercase text-slate-200">
-            Input
-          </h4>
-          <p className="text-sm text-slate-400">
-            </p>
-        </div>
-
-        <div className="space-y-1">
-          <h4 className="text-xs font-semibold uppercase text-slate-200">
-            Output
-          </h4>
-          <p className="text-sm text-slate-400">
-            
           </p>
         </div>
 
