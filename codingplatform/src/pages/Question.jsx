@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Filter, User } from "lucide-react";
+import { Filter, User, LogOut } from "lucide-react";
 import api from "../axios/axios";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
 
@@ -13,7 +13,15 @@ const Question = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const difficulty = searchParams.get("difficulty");
 
-  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const currentUserName = localStorage.getItem("name");
+
+  const handleLogout = () => {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("name");
+    navigate("/");
+  };
 
   useEffect(() => {
     api
@@ -93,14 +101,14 @@ const Question = () => {
 
         <button
           onClick={() => {
-            if (currentUser?.name) {
-              navigate(`/user/${currentUser.name}`);
+            if (currentUserName) {
+              navigate(`/user/${currentUserName}`);
             } else {
-               // Fallback if name is missing (e.g. from old login), redirect to login or handle gracefully
-               navigate("/");
+              navigate("/");
             }
           }}
           className="w-9 h-9 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center font-semibold"
+          title="Profile"
         >
           <User />
         </button>

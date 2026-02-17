@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { User, Mail, LayoutGrid } from "lucide-react";
+import { User, Mail, LayoutGrid, LogOut } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../axios/axios";
 
@@ -9,6 +9,14 @@ const Profile = () => {
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const handleLogout = () => {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("name");
+    navigate("/");
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -52,13 +60,21 @@ const Profile = () => {
       <div className="max-w-4xl mx-auto space-y-8">
         
 
-        <div>
+        <div className="flex items-center justify-between">
           <button
             onClick={() => navigate(-1)}
             className="group flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-purple-500/50 transition-all duration-300 backdrop-blur-md"
           >
             <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
             <span className="font-medium text-sm">Back to Challenges</span>
+          </button>
+
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 hover:bg-red-500/10 border border-slate-700/50 hover:border-red-500/50 transition-all duration-300 backdrop-blur-md"
+          >
+            <LogOut size={16} className="text-slate-400" />
+            <span className="font-medium text-sm">Logout</span>
           </button>
         </div>
 

@@ -19,12 +19,22 @@ export default function Login() {
       password
     })
       .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data));
+
+        const { id, email, name, token } = res.data;
+
+        localStorage.setItem("userId", id);
+        localStorage.setItem("token", token);
+        localStorage.setItem("email", email);
+        localStorage.setItem("name", name);
+
         navigate("/question");
       })
       .catch((err) => {
         console.error(err);
-        setError(err.response?.data?.message || "Login failed. Please check your credentials.");
+        setError(
+          err.response?.data?.message ||
+          "Login failed. Please check your credentials."
+        );
       })
       .finally(() => {
         setLoading(false);
