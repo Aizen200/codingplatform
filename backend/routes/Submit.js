@@ -5,28 +5,38 @@ const User = require("../model/User");
 const Question = require("../model/Question");
 
 const router = express.Router();
-
 router.post("/run", async (req, res) => {
   const { code, input } = req.body;
 
-  if (!code) {
-    return res.status(400).json({ message: "No code to run" });
+  if (!code || code.trim() === "") {
+    return res.status(400).json({ message: "No code provided" });
   }
 
   try {
-    const result = await runcode(code, input);
+    const result = await runcode(code, input || "");
 
-    return res.json(result);
+    const output =
+      result.stderr ||
+      result.compile_output ||
+      result.stdout ||
+      result.message ||
+      "No output";
+
+    return res.json({
+      output,
+      status: result.status?.description || "Unknown",
+      time: result.time,
+      memory: result.memory,
+    });
+
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ message: "Execution error" });
+    console.error("Execution error:", err.response?.data || err.message);
+    return res.status(500).json({ message: "Execution failed" });
   }
 });
 
-
 router.post("/submit", async (req, res) => {
   const { code, questionId, userId } = req.body;
-
 
   if (!code || !questionId || !userId) {
     return res.status(400).json({ message: "Missing fields" });
@@ -36,37 +46,39 @@ router.post("/submit", async (req, res) => {
     const ques = await Question.findById(questionId);
 
     if (!ques) {
-      return res.status(400).json({ message: "Question not found" });
+      return res.status(404).json({ message: "Question not found" });
     }
 
+    const normalize = (str) =>
+      (str || "").trim().split(/\s+/).join(" ");
+
     for (let tc of ques.testcase) {
-      const ans = await runcode(code, tc.input);
+      const result = await runcode(code, tc.input || "");
 
-      console.log("PISTON RESPONSE:", ans);
-
-
-      if (ans.run?.code !== 0) {
+      if (result.status?.id !== 3) {
         return res.json({
           verdict: "RE",
-          error: ans.run?.stderr || "Runtime Error",
+          error:
+            result.stderr ||
+            result.compile_output ||
+            result.status?.description ||
+            "Runtime Error",
         });
       }
 
-      const actual = String(ans.run?.stdout ?? "").trim();
-      const expected = String(tc.expectedOutput ?? "").trim();
-
+      const actual = normalize(result.stdout);
+      const expected = normalize(tc.expectedOutput);
 
       if (actual !== expected) {
         return res.json({
           verdict: "WA",
-          expected,
-          actual,
+          expected: tc.expectedOutput,
+          actual: result.stdout,
         });
       }
     }
 
-  
-
+ 
     await User.findByIdAndUpdate(userId, {
       $addToSet: { questionTitle: ques.title },
     });
@@ -80,7 +92,7 @@ router.post("/submit", async (req, res) => {
     return res.json({ verdict: "AC" });
 
   } catch (err) {
-    console.error(err);
+    console.error("Submit error:", err.response?.data || err.message);
     return res.status(500).json({ message: "Server error" });
   }
 });

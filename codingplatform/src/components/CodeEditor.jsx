@@ -17,33 +17,48 @@ export default function CodeEditor() {
   }
 
   async function runbutton() {
-    const code = coderef.current.getValue();
+    const code = coderef.current?.getValue();
+
+    if (!code || code.trim() === "") {
+      setOutput("Please write some code first.");
+      return;
+    }
+
     setOutput("Running...");
 
     try {
       const response = await api.post("/submission/run", {
-        code: code,
-        input: input,
+        code,
+        input: input || "",
       });
 
       const data = response.data;
 
+      // Backend returns: { output, status, time, memory }
+      setOutput(data.output || "No output");
 
-      setOutput(
-        data.stderr
-          ? data.stderr
-          : data.stdout
-          ? data.stdout
-          : "Code execution temporarily disabled due to third-party API restrictions."
-      );
     } catch (error) {
-      console.error(error);
-      setOutput("Error while executing code");
+      console.error("RUN ERROR:", error.response?.data || error.message);
+
+      if (error.response) {
+        setOutput(
+          error.response.data?.message ||
+          `Error ${error.response.status}`
+        );
+      } else {
+        setOutput("Backend not reachable");
+      }
     }
   }
 
+
   async function submit() {
-    const code = coderef.current.getValue();
+    const code = coderef.current?.getValue();
+
+    if (!code || code.trim() === "") {
+      setOk({ verdict: "Write code before submitting" });
+      return;
+    }
 
     try {
       const response = await api.post("/submission/submit", {
@@ -53,14 +68,26 @@ export default function CodeEditor() {
       });
 
       setOk(response.data);
-    } catch (err) {
-      console.error(err);
-      setOk({ verdict: "Submission failed" });
+
+    } catch (error) {
+      console.error("SUBMIT ERROR:", error.response?.data || error.message);
+
+      if (error.response) {
+        setOk({
+          verdict:
+            error.response.data?.message ||
+            `Error ${error.response.status}`,
+        });
+      } else {
+        setOk({ verdict: "Backend not reachable" });
+      }
     }
   }
 
   return (
     <div className="min-h-screen bg-[#020617] text-gray-200 p-6 flex flex-col gap-6 w-[70%]">
+      
+
       <div className="flex gap-4 flex-row-reverse">
         <button
           onClick={submit}
@@ -76,6 +103,7 @@ export default function CodeEditor() {
           Run
         </button>
       </div>
+
 
       {ok && (
         <div className="text-green-400 font-semibold">
@@ -95,6 +123,7 @@ export default function CodeEditor() {
         </div>
       )}
 
+
       <div className="border border-gray-700 rounded-md overflow-hidden">
         <Editor
           height="60vh"
@@ -103,6 +132,7 @@ export default function CodeEditor() {
           onMount={mount}
         />
       </div>
+
 
       <div className="border border-gray-700 rounded-md">
         <div className="flex border-b border-gray-700 text-sm">
