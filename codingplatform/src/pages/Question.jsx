@@ -38,7 +38,7 @@ const Question = () => {
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       const filtered = question.filter((q) =>
-        q.title.toLowerCase().includes(search.toLowerCase())
+        q.title.toLowerCase().includes(search.toLowerCase()),
       );
       setFilteredQuestions(filtered);
     }, 300);
@@ -107,10 +107,10 @@ const Question = () => {
               navigate("/");
             }
           }}
-          className="w-9 h-9 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center font-semibold"
+          className="w-9 h-9 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"
           title="Profile"
         >
-          <User />
+          <User size={18} />
         </button>
       </div>
 
