@@ -56,42 +56,45 @@ const Question = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-200 px-6 py-4">
-      <div className="flex items-center justify-between mb-6">
-        <h4 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+  <div className="min-h-screen bg-[#0e1015] text-zinc-200">
+    <div className="max-w-5xl mx-auto px-6 py-10">
+
+
+      <div className="flex items-center justify-between mb-10">
+        <h1 className="text-xl font-semibold tracking-tight">
           Algorythm
-        </h4>
+        </h1>
 
         <div className="flex items-center gap-3 relative">
           <input
             type="text"
-            placeholder="Search problems"
+            placeholder="Search problems..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-slate-800/60 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-purple-500"
+            className="bg-[#151922] border border-[#222633] rounded-md px-3 py-2 text-sm w-60 focus:outline-none focus:border-zinc-500 transition"
           />
 
           <button
             onClick={() => setOpen(!open)}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-2 rounded-lg text-sm font-medium"
+            className="bg-[#151922] border border-[#222633] px-3 py-2 rounded-md hover:border-zinc-500 transition"
           >
-            <Filter />
+            <Filter size={16} />
           </button>
 
           {open && (
-            <div className="absolute right-0 top-12 w-36 bg-slate-900 border border-slate-700 rounded-xl overflow-hidden z-50">
+            <div className="absolute right-0 top-12 w-36 bg-[#151922] border border-[#222633] rounded-md overflow-hidden z-50">
               {["easy", "medium", "hard"].map((x) => (
                 <button
                   key={x}
                   onClick={() => applyFilter(x)}
-                  className="w-full text-left px-4 py-2 capitalize hover:bg-slate-800 transition"
+                  className="w-full text-left px-4 py-2 capitalize hover:bg-[#1b1f2a] text-sm transition"
                 >
                   {x}
                 </button>
               ))}
               <button
                 onClick={() => applyFilter(null)}
-                className="w-full text-left px-4 py-2 text-slate-400 hover:bg-slate-800 transition border-t border-slate-700"
+                className="w-full text-left px-4 py-2 text-zinc-400 hover:bg-[#1b1f2a] text-sm border-t border-[#222633]"
               >
                 Clear
               </button>
@@ -107,14 +110,15 @@ const Question = () => {
               navigate("/");
             }
           }}
-          className="w-9 h-9 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"
+          className="w-9 h-9 rounded-md bg-[#151922] border border-[#222633] flex items-center justify-center hover:border-zinc-500 transition"
           title="Profile"
         >
-          <User size={18} />
+          <User size={16} />
         </button>
       </div>
 
-      <div className="flex gap-3 flex-wrap mb-6">
+   
+      <div className="flex gap-3 flex-wrap mb-8">
         {[
           "Arrays",
           "Dynamic-Programming",
@@ -125,34 +129,44 @@ const Question = () => {
           <button
             key={topic}
             onClick={() => navigate(`/questions/${topic}`)}
-            className="px-4 py-2 rounded-full bg-slate-800/60 border border-slate-700 hover:border-purple-500 hover:text-white transition"
+            className="px-4 py-2 rounded-md bg-[#151922] border border-[#222633] text-sm hover:border-zinc-500 transition"
           >
             {topic}
           </button>
         ))}
       </div>
 
-      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden">
-        <table className="w-full text-left">
-          <tbody>
-            {filteredQuestions.map((x) => (
-              <tr
-                key={x._id}
-                className="border-b border-slate-800 hover:bg-slate-800/40 transition"
-              >
-                <td className="px-4 sm:px-6 py-4 grid grid-cols-2 gap-4">
-                  <Link to={`/solve/${x._id}`}>
-                    <div>{x.title}</div>
-                    <div className="capitalize">{x.difficulty}</div>
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+      <div className="border border-[#222633] rounded-lg overflow-hidden">
+        {filteredQuestions.map((x, index) => (
+          <Link
+            to={`/solve/${x._id}`}
+            key={x._id}
+            className={`flex items-center justify-between px-6 py-4 text-sm transition 
+              ${index !== filteredQuestions.length - 1 ? "border-b border-[#222633]" : ""}
+              hover:bg-[#151922]`}
+          >
+            <div className="font-medium">
+              {x.title}
+            </div>
+
+            <div
+              className={`text-xs font-medium px-2 py-1 rounded-md capitalize
+                ${
+                  x.difficulty === "easy"
+                    ? "bg-green-500/10 text-green-400"
+                    : x.difficulty === "medium"
+                    ? "bg-yellow-500/10 text-yellow-400"
+                    : "bg-red-500/10 text-red-400"
+                }
+              `}
+            >
+              {x.difficulty}
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
-  );
-};
-
+  </div>
+);}
 export default Question;
