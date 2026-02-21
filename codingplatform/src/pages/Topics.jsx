@@ -8,13 +8,7 @@ const Topics = () => {
   const navigate = useNavigate();
   const currentUserName = localStorage.getItem("name");
 
-  const handleLogout = () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    localStorage.removeItem("name");
-    navigate("/");
-  };
+
 
   const [topicquestion, setTopicquestion] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
@@ -113,14 +107,6 @@ const Topics = () => {
             title="Profile"
           >
             <User size={18} />
-          </button>
-
-          <button
-            onClick={handleLogout}
-            className="w-9 h-9 rounded-full bg-slate-800/60 border border-slate-700 hover:border-red-500/50 hover:bg-red-500/10 flex items-center justify-center transition-all duration-300"
-            title="Logout"
-          >
-            <LogOut size={16} className="text-slate-400" />
           </button>
         </div>
       </div>
