@@ -3,7 +3,7 @@ import CodeEditor from "../components/CodeEditor";
 
 const Description = () => {
   return (
-    <div className="flex flex-row h-screen">
+    <div className="h-screen flex overflow-hidden">
       <Questiondescritpon />
       <CodeEditor />
     </div>
