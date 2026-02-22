@@ -35,59 +35,71 @@ const Signup = () => {
       });
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
-      <div className="w-[380px] rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 p-8 shadow-2xl">
-        <h1 className="text-3xl font-bold text-center text-white mb-6">
+ return (
+  <div className="min-h-screen bg-[#0e1015] flex items-center justify-center px-6">
+    <div className="w-full max-w-md border border-[#222633] rounded-lg bg-[#151922] p-8 space-y-6">
+
+      <div className="text-center space-y-2">
+        <h1 className="text-xl font-semibold tracking-tight text-zinc-200">
           Algorythm
         </h1>
-
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col space-y-4">
-            <input
-              placeholder="Username"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white"
-            />
-
-            <input
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white"
-            />
-
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-white"
-            />
-
-            {error && (
-              <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-sm p-3 rounded-xl text-center">
-                {error}
-              </div>
-            )}
-
-            <button
-               type="submit"
-               disabled={loading}
-               className="mt-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
-            >
-              {loading ? "Signing up..." : "Sign Up"}
-            </button>
-
-            <p className="text-center text-white">
-              Already a user? <Link to="/auth/login">Login</Link>
-            </p>
-          </div>
-        </form>
+        <p className="text-sm text-zinc-400">
+          Create your account
+        </p>
       </div>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+
+        <input
+          placeholder="Username"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full px-4 py-2 rounded-md bg-[#0e1015] border border-[#222633] text-sm text-zinc-200 focus:outline-none focus:border-zinc-500 transition"
+        />
+
+        <input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full px-4 py-2 rounded-md bg-[#0e1015] border border-[#222633] text-sm text-zinc-200 focus:outline-none focus:border-zinc-500 transition"
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full px-4 py-2 rounded-md bg-[#0e1015] border border-[#222633] text-sm text-zinc-200 focus:outline-none focus:border-zinc-500 transition"
+        />
+
+        {error && (
+          <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-3 rounded-md">
+            {error}
+          </div>
+        )}
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full py-2 text-sm rounded-md bg-[#0e1015] border border-[#222633] hover:border-zinc-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {loading ? "Signing up..." : "Sign Up"}
+        </button>
+
+        <p className="text-center text-sm text-zinc-400">
+          Already have an account?{" "}
+          <Link
+            to="/auth/login"
+            className="text-zinc-200 hover:underline"
+          >
+            Login
+          </Link>
+        </p>
+
+      </form>
     </div>
-  );
+  </div>
+);
 };
 
 export default Signup;
