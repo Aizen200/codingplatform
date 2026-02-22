@@ -81,7 +81,7 @@ const Signup = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-2 text-sm rounded-md bg-[#0e1015] border border-[#222633] hover:border-zinc-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-2 text-sm rounded-md bg-[#0e1015] border border-[#222633] hover:border-zinc-500 transition disabled:opacity-50 disabled:cursor-not-allowed text-white" 
         >
           {loading ? "Signing up..." : "Sign Up"}
         </button>

@@ -46,8 +46,6 @@ const Topics = () => {
   return (
   <div className="min-h-screen bg-[#0e1015] text-zinc-200">
     <div className="max-w-6xl mx-auto px-6 py-10">
-
-      {/* HEADER */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-10">
 
         <button
@@ -115,10 +113,9 @@ const Topics = () => {
         </div>
       </div>
 
-      {/* MAIN LAYOUT */}
+    
       <div className="flex flex-col lg:flex-row gap-8">
 
-        {/* LEFT SIDEBAR */}
         <div className="w-full lg:w-72 border border-[#222633] rounded-lg bg-[#151922] p-6 space-y-4">
           <h2 className="text-lg font-semibold tracking-tight">
             {topic}
@@ -140,7 +137,7 @@ const Topics = () => {
           </div>
         </div>
 
-        {/* QUESTIONS LIST */}
+   
         <div className="flex-1 border border-[#222633] rounded-lg overflow-hidden">
 
           {filteredQuestions.map((x, index) => (

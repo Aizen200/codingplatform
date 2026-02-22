@@ -42,35 +42,47 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
-      <form onSubmit={handleSubmit}>
-        <div className="relative z-10 w-full max-w-md bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl shadow-2xl p-8 space-y-6">
-          <h1 className="text-center text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+  <div className="min-h-screen bg-[#0e1015] flex items-center justify-center px-6">
+    <form onSubmit={handleSubmit} className="w-full max-w-md">
+      <div className="border border-[#222633] rounded-lg bg-[#151922] p-8 space-y-6">
+
+        <div className="text-center space-y-2">
+          <h1 className="text-xl font-semibold tracking-tight text-zinc-200">
             Algorythm
           </h1>
+          <p className="text-sm text-zinc-400">
+            Welcome back
+          </p>
+        </div>
 
-          <div className="space-y-2">
-            <label className="text-slate-300 text-sm">Email</label>
+        <div className="space-y-4">
+
+          <div className="space-y-1">
+            <label className="text-xs uppercase tracking-wide text-zinc-500">
+              Email
+            </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white"
+              className="w-full px-4 py-2 rounded-md bg-[#0e1015] border border-[#222633] text-sm text-zinc-200 focus:outline-none focus:border-zinc-500 transition"
             />
           </div>
 
-          <div className="space-y-2">
-            <label className="text-slate-300 text-sm">Password</label>
+          <div className="space-y-1">
+            <label className="text-xs uppercase tracking-wide text-zinc-500">
+              Password
+            </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white"
+              className="w-full px-4 py-2 rounded-md bg-[#0e1015] border border-[#222633] text-sm text-zinc-200 focus:outline-none focus:border-zinc-500 transition"
             />
           </div>
 
           {error && (
-            <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-sm p-3 rounded-xl text-center">
+            <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-3 rounded-md">
               {error}
             </div>
           )}
@@ -78,16 +90,24 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+            className="w-full py-2 text-sm rounded-md bg-[#0e1015] border border-[#222633] hover:border-zinc-500 transition disabled:opacity-50 disabled:cursor-not-allowed text-white"
           >
-            {loading ? "Logging in..." : "Login →"}
+            {loading ? "Logging in..." : "Login"}
           </button>
 
-          <p className="text-center text-white">
-            New user? <Link to="/auth/signup">Signup</Link>
+          <p className="text-center text-sm text-zinc-400">
+            New user?{" "}
+            <Link
+              to="/auth/signup"
+              className="text-zinc-200 hover:underline"
+            >
+              Signup
+            </Link>
           </p>
+
         </div>
-      </form>
-    </div>
-  );
+      </div>
+    </form>
+  </div>
+);
 }

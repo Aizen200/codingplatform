@@ -15,13 +15,6 @@ const Question = () => {
 
   const currentUserName = localStorage.getItem("name");
 
-  const handleLogout = () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    localStorage.removeItem("name");
-    navigate("/");
-  };
 
   useEffect(() => {
     api
