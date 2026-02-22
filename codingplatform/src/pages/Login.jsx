@@ -101,7 +101,7 @@ export default function Login() {
               to="/auth/signup"
               className="text-zinc-200 hover:underline"
             >
-              Signup
+              SignUp
             </Link>
           </p>
 
