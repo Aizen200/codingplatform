@@ -11,5 +11,5 @@ jobs:
     steps:
       - name: Ping Backend URL
         run: |
-          curl -I https://qwertyuio.onrender.com
+          curl -I https://codingplatform-32vc.onrender.com/
           echo "Ping sent to keep Render service alive"
