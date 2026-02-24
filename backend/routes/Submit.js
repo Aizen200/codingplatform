@@ -46,7 +46,7 @@ router.post("/submit", async (req, res) => {
     const ques = await Question.findById(questionId);
 
     if (!ques) {
-      return res.status(404).json({ message: "Question not found" });
+      return res.status(404).json({ message: "Question not found." });
     }
 
     const normalize = (str) =>

@@ -24,7 +24,7 @@ const startServer = async () => {
     console.log("DB connected");
 
     app.listen(PORT, () => {
-      console.log("Server is running..");
+      console.log("Server is running...");
     });
 
   } catch (err) {
