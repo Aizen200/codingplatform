@@ -76,7 +76,10 @@ return (
     <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col gap-8">
 
 
-      <div className="flex justify-end gap-3">
+      <div className="flex justify-end  items-center gap-3">
+       <h2 className="text-sm font-medium text-zinc-300">
+    Python
+  </h2>
 
         <button
           onClick={runbutton}
