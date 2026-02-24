@@ -57,7 +57,7 @@ router.post("/submit", async (req, res) => {
 
       if (result.status?.id !== 3) {
         return res.json({
-          verdict: "RE",
+          verdict: "Runtime Error",
           error:
             result.stderr ||
             result.compile_output ||
@@ -71,7 +71,7 @@ router.post("/submit", async (req, res) => {
 
       if (actual !== expected) {
         return res.json({
-          verdict: "WA",
+          verdict: "Wrong Answer",
           expected: tc.expectedOutput,
           actual: result.stdout,
         });
@@ -89,7 +89,7 @@ router.post("/submit", async (req, res) => {
       { upsert: true }
     );
 
-    return res.json({ verdict: "AC" });
+    return res.json({ verdict: "Answer Accepted" });
 
   } catch (err) {
     console.error("Submit error:", err.response?.data || err.message);
