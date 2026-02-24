@@ -80,7 +80,7 @@ export default function Login() {
               className="w-full px-4 py-2 rounded-md bg-[#0e1015] border border-[#222633] text-sm text-zinc-200 focus:outline-none focus:border-zinc-500 transition"
             />
           </div>
-
+          
           {error && (
             <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-3 rounded-md">
               {error}
