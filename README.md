@@ -1,20 +1,20 @@
-# 🚀 Algorythm
+#  Algorythm
 
 **Algorythm** is a high-performance competitive programming and technical interview preparation platform. It empowers developers to solve complex algorithmic challenges with a premium, real-time coding experience.
 
 ---
 
-## ✨ Features
+##  Features
 
-- **💻 Premium Editor**: Integrated with **Monaco Editor** for a VS Code-like experience.
-- **⚡ Fast Code Execution**: Real-time feedback via **Judge0 CE** integration.
-- **📚 Organized Problems**: Challenged categorized by specific algorithmic topics.
-- **👤 User Analytics**: Track your progress, monitor solved counts, and manage your profile.
-- **🔒 Secure Access**: JWT-based session management for data privacy.
+- ** Premium Editor**: Integrated with **Monaco Editor** for a VS Code-like experience.
+- ** Fast Code Execution**: Real-time feedback via **Judge0 CE** integration.
+- ** Organized Problems**: Challenged categorized by specific algorithmic topics.
+- ** User Analytics**: Track your progress, monitor solved counts, and manage your profile.
+- ** Secure Access**: JWT-based session management for data privacy.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Component | Technology |
 | :--- | :--- |
@@ -26,7 +26,7 @@
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 Follow these steps to set up **Algorythm** locally.
 
@@ -79,7 +79,7 @@ VITE_API_URL=http://localhost:3000
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 ├── backend/            # Express.js Server
