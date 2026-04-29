@@ -21,14 +21,14 @@ async function seed() {
       title: "Sum of Array Elements",
       topic: "Arrays",
       difficulty: "easy",
-      description: "Return the sum of all elements in the given integer array.",
+      description: "Create a function which returns  the sum of all elements in the given integer array.",
       constraints: [
         "0 ≤ nums.length ≤ 10^5",
         "-10^4 ≤ nums[i] ≤ 10^4"
       ],
       testcase: [
-        { input: "1 2 3", expectedOutput: "6" },
-        { input: "", expectedOutput: "0" }
+        { input: "1 2 3", expectedOutput: "6" }
+        
       ]
     },
 
@@ -854,7 +854,7 @@ async function seed() {
     },
         {
       title: "Climbing Stairs",
-      topic: "dynamic-programming",
+      topic: "Dynamic-programming",
       difficulty: "easy",
       description: "Return the number of distinct ways to climb to the top when you can take 1 or 2 steps.",
       constraints: [
@@ -868,7 +868,7 @@ async function seed() {
 
     {
       title: "Fibonacci Number (DP)",
-      topic: "dynamic-programming",
+      topic: "Dynamic-programming",
       difficulty: "easy",
       description: "Return the nth Fibonacci number using dynamic programming.",
       constraints: [

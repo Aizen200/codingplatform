@@ -13,7 +13,8 @@ const Question = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const difficulty = searchParams.get("difficulty");
 
-  const currentUserName = localStorage.getItem("name");
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const currentUserName = storedUser?.name;
 
 
   useEffect(() => {

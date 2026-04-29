@@ -30,6 +30,7 @@ router.post("/signup", signUpmiddleware, async (req, res) => {
   return res.status(201).json({
     id: user._id,
     email: user.email,
+    name: user.name,
     token
   });
 });
